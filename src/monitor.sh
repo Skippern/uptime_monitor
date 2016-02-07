@@ -10,11 +10,11 @@ test_link () {
 }
 up2down() {
     # Host turned not reachable
-    echo "$(date) Host unreachable ($timedown), up since $timeup" >> ~/log/linklogger.log
+    echo "$(date): Host unreachable ($timedown), up since $timeup" >> ~/log/linklogger.log
 }
 up2dead() {
     # Host completely dead
-    echo "$(date) No route to nameserver ($timedead), up since $timeup" >> ~/log/linklogger.log
+    echo "$(date): No route to nameserver ($timedead), up since $timeup" >> ~/log/linklogger.log
 }
 down2up() {
     # Host returned
@@ -22,7 +22,7 @@ down2up() {
 }
 dead2up() {
     # Host returned
-    echo "$(date) Host returned ($timeup), down since $timedead" >> ~/log/linklogger.log
+    echo "$(date): Host returned ($timeup), down since $timedead" >> ~/log/linklogger.log
 }
 set_status () {
     if [ "$1" -eq "$status" ]
@@ -70,13 +70,13 @@ test_link
 export arg=$?
 if [ "$arg" -eq 0 ]
 then
-    echo "$(date) Log started with link up." >> ~/log/linklogger.log
+    echo "$(date): Log started with link up." >> ~/log/linklogger.log
 elif [ "$arg" -eq 1 ]
 then
-    echo "$(date) Log started with link down." >> ~/log/linklogger.log
-elig [ "$arg" -eq 2 ]
+    echo "$(date): Log started with link down." >> ~/log/linklogger.log
+elif [ "$arg" -eq 2 ]
 then
-    echo "$(date) Log started with no route to nameserver." >> ~/log/linklogger.log
+    echo "$(date): Log started with no route to nameserver." >> ~/log/linklogger.log
 fi
 set_status $arg
 sleep 10
