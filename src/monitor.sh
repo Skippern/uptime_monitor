@@ -66,6 +66,21 @@ set_status () {
     fi
 }
 
+test_link
+export arg=$?
+if [ "$arg" -eq 0 ]
+then
+    echo "$(date) Log started with link up." >> ~/log/linklogger.log
+elif [ "$arg" -eq 1 ]
+then
+    echo "$(date) Log started with link down." >> ~/log/linklogger.log
+elig [ "$arg" -eq 2 ]
+then
+    echo "$(date) Log started with no route to nameserver." >> ~/log/linklogger.log
+fi
+set_status $arg
+sleep 10
+
 while [ 1 ]
 do
     test_link
