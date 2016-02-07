@@ -3,7 +3,6 @@
 # Monitor shell script - shell attempt to solve the problem
 #
 export status=-1
-
 test_link () {
     ping -c 5 www.google.com >/dev/null 2>&1
 #    echo "Status is $?"
@@ -11,19 +10,19 @@ test_link () {
 }
 up2down() {
     # Host turned not reachable
-    echo "Host unreachable ($timedown), up since $timeup" > ~/linklogger.log
+    echo "$(date) Host unreachable ($timedown), up since $timeup" >> ~/linklogger.log
 }
 up2dead() {
     # Host completely dead
-    echo "No route to nameserver ($timedead), up since $timeup" > ~/linklogger.log
+    echo "$(date) No route to nameserver ($timedead), up since $timeup" >> ~/linklogger.log
 }
 down2up() {
     # Host returned
-    echo "Host returned ($timeup), down since $timedown" > ~/linklogger.log
+    echo "$(date) Host returned ($timeup), down since $timedown" >> ~/linklogger.log
 }
 dead2up() {
     # Host returned
-    echo "Host returned ($timeup), down since $timedead" > ~/linklogger.log
+    echo "$(date) Host returned ($timeup), down since $timedead" >> ~/linklogger.log
 }
 set_status () {
     if [ "$1" -eq "$status" ]
