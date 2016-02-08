@@ -23,12 +23,13 @@ else:
 
 keepalive = 1
 while (keepalive == 1):
-    time.sleep(55)
+    time.sleep(45)
     response = os.system("ping -c 1 " + hostname + " > /dev/null 2>&1")
     if response == 2:
         response = 1
+    logging.debug('Response is %s', response)
     if response != status:
-        if resopnse == 0:
+        if response == 0:
             ## Link just came back
             logging.info('Link returned')
         else:

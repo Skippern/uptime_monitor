@@ -10,19 +10,19 @@ test_link () {
 }
 up2down() {
     # Host turned not reachable
-    echo "$(date): Host unreachable ($timedown), up since $timeup" >> ~/log/linklogger.log
+    echo "$(date): Host unreachable, up since $timeup" >> ~/log/linklogger.log
 }
 up2dead() {
     # Host completely dead
-    echo "$(date): No route to nameserver ($timedead), up since $timeup" >> ~/log/linklogger.log
+    echo "$(date): No route to nameserver, up since $timeup" >> ~/log/linklogger.log
 }
 down2up() {
     # Host returned
-    echo "$(date) Host returned ($timeup), down since $timedown" >> ~/log/linklogger.log
+    echo "$(date) Host returned, down since $timedown" >> ~/log/linklogger.log
 }
 dead2up() {
     # Host returned
-    echo "$(date): Host returned ($timeup), down since $timedead" >> ~/log/linklogger.log
+    echo "$(date): Host returned, down since $timedead" >> ~/log/linklogger.log
 }
 set_status () {
     if [ "$1" -eq "$status" ]
