@@ -11,7 +11,8 @@ import datetime
 DEBUG = 0
 interval = 15
 
-hostname = "google.com" # example
+hostname = "google.com"
+otherhost = "ikke.no"
 response = os.system("ping -c 1 " + hostname + " > /dev/null 2>&1")
 status = response
 change = datetime.datetime.now().replace(microsecond=0)
@@ -22,15 +23,18 @@ else:
 
 logging.debug('monitor.py started in DEBUG mode')
 if response == 0:
-    logging.info('monitory.py started. Network is up!')
+    logging.info('monitor.py started. Network is up!')
 else:
-    logging.info('monitory.py started. Network is down!')
+    logging.info('monitor.py started. Network is down!')
     response = 1
 
 keepalive = 1
 while (keepalive == 1):
     time.sleep(interval)
     response = os.system("ping -c 1 " + hostname + " > /dev/null 2>&1")
+    # If link fails, try other host to see if it really is down
+    if response != 0:
+        response = os.system("ping -c 1 " + otherhost + " > /dev/null 2>&1")
     if response == 2:
         response = 1
     logging.debug('Response is %s, status is %s', response, status)
