@@ -51,7 +51,7 @@ while (keepalive == 1):
             logging.info('Link returned, downtime:  %s', diff)
             ## If mail prepared, send it now
             if diff > "0:05:00":
-                logging.debug('Downtime major than 5 minutes, mail to be sent.')
+                logging.info('Downtime major than 5 minutes, mail to be sent.')
         elif response == 1:
             ## Link just fell
             change = now
