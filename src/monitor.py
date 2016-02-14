@@ -48,13 +48,15 @@ while (keepalive == 1):
             ## Link just came back
             change = now
             status = response
-            logging.info('Link returned, downtime: %s', diff)
+            logging.info('Link returned, downtime:  %s', diff)
             ## If mail prepared, send it now
+            if diff > "0:05:00":
+                logging.debug('Downtime major than 5 minutes, mail to be sent.')
         elif response == 1:
             ## Link just fell
             change = now
             status = response
-            logging.warning('Link just died, uptime: %s', diff)
+            logging.warning('Link just died, uptime:   %s', diff)
         else:
             logging.debug('Something went wrong')
 
